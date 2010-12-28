@@ -330,8 +330,8 @@ class DateTimeSolution_Diff extends DateTime {
 	private function timelib_get_time_zone_info($ts, &$tz) {
 		$tmp = new StdClass;
 
-		$to = $this->transitions[$tz->getName()][$ts];
-		if ($to) {
+		if (!empty($this->transitions[$tz->getName()][$ts])) {
+			$to = $this->transitions[$tz->getName()][$ts];
 			$offset = $to[0]['offset'];
 			$abbr = $to[0]['abbr'];
 			$tmp->is_dst = $to[0]['isdst'];
