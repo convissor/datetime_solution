@@ -49,15 +49,22 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 			$end_date = $end->format('Y-m-d');
 		}
 
+		$force_sub = false;
+		if ($absolute) {
+			$tmp_interval = $start->diff($end);
+			if ($tmp_interval->format('%r')) {
+				$force_sub = true;
+			}
+		}
+
 		$result_interval = $start->diff($end, $absolute);
 		$result_interval_spec = $result_interval->format('P%R%yY%mM%dDT%hH%iM%sS');
 
 		// Also make sure add()/sub() works the same way as diff().
-		$end_date_from_expect = $this->arithmatic_from_interval($start, $expect_interval_spec);
-		$end_date_from_result = $this->arithmatic_from_interval($start, $result_interval_spec);
+		$end_date_from_result = $this->arithmatic_from_interval($start, $result_interval_spec, $force_sub);
 
 		$expect_full = "$end_date - $start_date = $expect_interval_spec. "
-			. "$start_date + $expect_interval_spec = $end_date_from_expect";
+			. "$start_date + $expect_interval_spec = $end_date";
 		$result_full = "$end_date - $start_date = $result_interval_spec. "
 			. "$start_date + $result_interval_spec = $end_date_from_result";
 
@@ -76,12 +83,13 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 	 *
 	 * @return string   the date in YYYY-MM-DD HH:MM:SS format
 	 */
-	protected function arithmatic_from_interval($start_date, $custom_interval_spec) {
+	protected function arithmatic_from_interval($start_date, $custom_interval_spec, $force_sub) {
 		$start = clone $start_date;
 
 		preg_match('/^P([+-])(.+)$/', $custom_interval_spec, $atom);
 		$interval = new DateIntervalSolution('P' . $atom[2]);
-		if ($atom[1] == '+') {
+
+		if ($atom[1] == '+' && !$force_sub) {
 			$date = $start->add($interval);
 		} else {
 			$date = $start->sub($interval);
