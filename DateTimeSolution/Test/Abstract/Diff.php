@@ -61,7 +61,12 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		$result_interval_spec = $result_interval->format('P%R%yY%mM%dDT%hH%iM%sS');
 
 		// Also make sure add()/sub() works the same way as diff().
-		$end_date_from_result = $this->arithmatic_from_interval($start, $result_interval_spec, $force_sub);
+		if ($force_sub) {
+			$start->sub($result_interval);
+		} else {
+			$start->add($result_interval);
+		}
+		$end_date_from_result = $start->format('Y-m-d');
 
 		$expect_full = "FWD: $end_date - $start_date = $expect_interval_spec | "
 			. "BACK: $start_date + $expect_interval_spec = $end_date | "
@@ -71,31 +76,6 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 			. "DAYS: $result_interval->days";
 
 		$this->assertEquals($expect_full, $result_full);
-	}
-
-	/**
-	 * Provides a consistent interface for addition or subtraction
-	 * using our interval format
-	 *
-	 * @param DateTimeSolution $start_date  the starting date
-	 * @param string $custom_interval_spec  the special interval specification
-	 *               used for this test suite.  This spec includes a "+" or "-"
-	 *               after the "P" in order to indicate which direction to go.
-	 *
-	 * @return string   the date in YYYY-MM-DD HH:MM:SS format
-	 */
-	protected function arithmatic_from_interval($start_date, $custom_interval_spec, $force_sub) {
-		$start = clone $start_date;
-
-		preg_match('/^P([+-])(.+)$/', $custom_interval_spec, $atom);
-		$interval = new DateIntervalSolution('P' . $atom[2]);
-
-		if ($atom[1] == '+' && !$force_sub) {
-			$date = $start->add($interval);
-		} else {
-			$date = $start->sub($interval);
-		}
-		return $date->format('Y-m-d');
 	}
 
 
