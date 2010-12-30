@@ -63,16 +63,18 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		// Also make sure add()/sub() works the same way as diff().
 		if ($force_sub) {
 			$start->sub($result_interval);
+			$sign = '-';
 		} else {
 			$start->add($result_interval);
+			$sign = '+';
 		}
 		$end_date_from_result = $start->format('Y-m-d');
 
 		$expect_full = "FWD: $end_date - $start_date = $expect_interval_spec | "
-			. "BACK: $start_date + $expect_interval_spec = $end_date | "
+			. "BACK: $start_date $sign $expect_interval_spec = $end_date | "
 			. "DAYS: $expect_days";
 		$result_full = "FWD: $end_date - $start_date = $result_interval_spec | "
-			. "BACK: $start_date + $result_interval_spec = $end_date_from_result | "
+			. "BACK: $start_date $sign $result_interval_spec = $end_date_from_result | "
 			. "DAYS: $result_interval->days";
 
 		$this->assertEquals($expect_full, $result_full);
