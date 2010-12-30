@@ -39,13 +39,13 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		if (is_string($start_date)) {
 			$start = new DateTimeSolution($start_date);
 		} else {
-			$start = clone $start_date;
+			$start = $start_date;
 			$start_date = $start->format('Y-m-d');
 		}
 		if (is_string($end_date)) {
 			$end = new DateTimeSolution($end_date);
 		} else {
-			$end = clone $end_date;
+			$end = $end_date;
 			$end_date = $end->format('Y-m-d');
 		}
 
