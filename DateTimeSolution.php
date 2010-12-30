@@ -4,8 +4,8 @@
  * Declares the DateTimeSolution class based on the PHP version being used
  *
  * PHP Version:
- * + >= 5.3.3: DateTimeSolution extends DateTime
- * + 5.3 < 5.3.3: DateTimeSolution extends DateTimeSolution_Diff extends DateTime
+ * + >= 5.3.5: DateTimeSolution extends DateTime
+ * + 5.3 < 5.3.5: DateTimeSolution extends DateTimeSolution_Diff extends DateTime
  * + 5.2: DateTimeSolution extends DateTimeSolution_52 extends
  *        DateTimeSolution_Diff extends DateTime
  *
@@ -21,9 +21,9 @@
 if (class_exists('DateInterval')) {
 	// PHP 5.3
 
-	if (version_compare(phpversion(), '5.3.3', '>=')) {
+	if (version_compare(phpversion(), '5.3.5', '>=')) {
 		/**
-		 * The bug was fixed in 5.3.3; just stub PHP's DateTime class
+		 * Bug should be fixed in 5.3.5; just stub PHP's DateTime class
 		 * @ignore
 		 * @package DateTimeSolution
 		 */
@@ -36,7 +36,7 @@ if (class_exists('DateInterval')) {
 		}
 	} else {
 		/**
-		 * Bug 49081 afflicts DateTime::diff(); provide working version
+		 * Bugs afflict DateTime::diff(); provide working version
 		 * @ignore
 		 * @package DateTimeSolution
 		 */

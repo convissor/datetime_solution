@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DateTime Solution's DateTime class for use if PHP < 5.3.3
+ * DateTime Solution's DateTime class for use if PHP < 5.3.5
  *
  * NOTE: only supports years, months and days (for now).
  *
@@ -14,8 +14,8 @@
  */
 
 /**
- * Provides a DateTime::diff() substitute for versions of PHP before 5.3.3
- * because PHP bug 49081
+ * Provides a DateTime::diff() substitute to work around bugs in versions of
+ * PHP before 5.3.5
  *
  * NOTE: only supports years, months and days (for now).
  *
