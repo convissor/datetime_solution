@@ -141,7 +141,10 @@ class DateTimeSolution_Diff extends DateTime {
 			$interval->invert = 1;
 		}
 
+		/*
+		 * Damn!  Writing to $days throws fatal error.  Bug 53634.
 		$interval->days = abs(floor(($one->sse - $two->sse - ($dst_h_corr * 3600) - ($dst_m_corr * 60)) / 86400));
+		 */
 
 		return $interval;
 	}
