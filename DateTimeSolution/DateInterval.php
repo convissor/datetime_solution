@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DateTime Solution's DateInterval class for all PHP versions
+ * DateTime Solution's DateInterval class for use if PHP < 5.3
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
@@ -10,10 +10,7 @@
  */
 
 /**
- * Provides DateInterval functionality for all versions of PHP
- *
- * Needed because 5.2 lacks DateInterval, 5.3 has bug 53634 and several
- * other issues.
+ * Provides DateInterval functionality for versions of PHP before 5.3
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
@@ -25,7 +22,7 @@ class DateTimeSolution_DateInterval {
 	 * Indicates which level of support the DateTime Solution is providing
 	 * @var string
 	 */
-	public $datetime_solution_level = 'interval';
+	public $datetime_solution_level = '52';
 
 	/**
 	 * The total number of days
