@@ -6,7 +6,8 @@
 require_once dirname(__FILE__) . '/classes_native.php';
 
 /**
- * Tests PHP's diff() method
+ * Tests PHP's diff() method then passes the resulting
+ * interval to PHP's add()/sub() method as a double check
  *
  * Usage:  phpunit Native_DiffTest
  *

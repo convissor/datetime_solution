@@ -6,7 +6,8 @@
 require_once dirname(__FILE__) . '/classes_userland.php';
 
 /**
- * Tests the DateTime Solution's diff() method
+ * Tests the DateTime Solution's diff() method then passes the resulting
+ * interval to the DateTime Solution's add()/sub() method as a double check
  *
  * Usage:  phpunit Userland_DiffTest
  *

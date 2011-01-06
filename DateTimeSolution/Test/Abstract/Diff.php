@@ -1,7 +1,8 @@
 <?php /** @package DateTimeSolution_Test */
 
 /**
- * Contains tests for the diff() method
+ * Tests the diff() method then passes the resulting
+ * interval to the add()/sub() method as a double check
  *
  * @package DateTimeSolution_Test
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
@@ -18,6 +19,9 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 
 	/**
 	 * Provides a consistent interface for executing date diff tests
+	 *
+	 * Tests the diff() method then passes the resulting
+	 * interval to the add()/sub() method as a double check
 	 *
 	 * @param string|DateTimeSolution $end_date  the end date in YYYY-MM-DD
 	 *                                format (can include time HH:MM:SS)
