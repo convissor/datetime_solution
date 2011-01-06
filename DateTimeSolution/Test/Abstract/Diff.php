@@ -25,7 +25,7 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 	 * @param string|DateTimeSolution $start_date  the starting date in YYYY-MM-DD
 	 *                                format (can include time HH:MM:SS)
 	 *                                or a DateTimeSolution object
-	 * @param string $expect_interval_spec  the expected result of the tests, in
+	 * @param string $expect_spec  the expected result of the tests, in
 	 *               the special interval specification used for this test suite.
 	 *               This spec includes a "+" or "-" after the "P" in order to
 	 *               indicate which direction to go.
@@ -35,7 +35,7 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 	 *
 	 * @return void
 	 */
-	protected function examine_diff($end_date, $start_date, $expect_interval_spec, $expect_days, $absolute = false) {
+	protected function examine_diff($end_date, $start_date, $expect_spec, $expect_days, $absolute = false) {
 		if (is_string($start_date)) {
 			$start = new DateTimeSolution($start_date);
 		} else {
@@ -59,7 +59,7 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		}
 
 		$result_interval = $start->diff($end, $absolute);
-		$result_interval_spec = $result_interval->format('P%R%yY%mM%dDT%hH%iM%sS');
+		$result_spec = $result_interval->format('P%R%yY%mM%dDT%hH%iM%sS');
 
 		// Also make sure add()/sub() works the same way as diff().
 		if ($force_sub) {
@@ -69,13 +69,13 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 			$start->add($result_interval);
 			$sign = '+';
 		}
-		$end_date_from_result = $start->format('Y-m-d');
+		$result_end_date = $start->format('Y-m-d');
 
 		// Not checking days for now due to bug 53634.
-		$expect_full = "FWD: $end_date - $start_date = $expect_interval_spec | "
-			. "BACK: $start_date $sign $expect_interval_spec = $end_date";
-		$result_full = "FWD: $end_date - $start_date = $result_interval_spec | "
-			. "BACK: $start_date $sign $result_interval_spec = $end_date_from_result";
+		$expect_full = "FWD: $end_date - $start_date = **$expect_spec** | "
+			. "BACK: $start_date $sign $expect_spec = **$end_date**";
+		$result_full = "FWD: $end_date - $start_date = **$result_spec** | "
+			. "BACK: $start_date $sign $result_spec = **$result_end_date**";
 
 		$this->assertEquals($expect_full, $result_full);
 	}
