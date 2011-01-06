@@ -13,7 +13,7 @@
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2009-2010
+ * @copyright The Analysis and Solutions Company, 2009-2011
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  * @link http://www.analysisandsolutions.com/software/datetime_solution/
  */
@@ -50,7 +50,7 @@ if (class_exists('DateInterval')) {
 	 *
 	 * @package DateTimeSolution
 	 * @author Daniel Convissor <danielc@analysisandsolutions.com>
-	 * @copyright The Analysis and Solutions Company, 2009-2010
+	 * @copyright The Analysis and Solutions Company, 2009-2011
 	 * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
 	 * @link http://www.analysisandsolutions.com/software/datetime_solution/
 	 */

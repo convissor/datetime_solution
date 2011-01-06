@@ -5,7 +5,7 @@
  *
  * @package DateTimeSolution_Test
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2009-2010
+ * @copyright The Analysis and Solutions Company, 2009-2011
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
 abstract class DateTimeSolution_Test_Abstract_IntervalConstruct extends PHPUnit_Framework_TestCase {

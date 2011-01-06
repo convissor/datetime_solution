@@ -9,7 +9,7 @@
 # the Native and Userland tests declare parent classes with the same name.
 #
 # Author: Daniel Convissor <danielc@analysisandsolutions.com>
-# Copyright: The Analysis and Solutions Company, 2009-2010
+# Copyright: The Analysis and Solutions Company, 2009-2011
 # License: http://www.analysisandsolutions.com/software/license.htm Simple Public License
 # Link: http://www.analysisandsolutions.com/software/datetime_solution/
 

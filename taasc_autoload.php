@@ -10,7 +10,7 @@
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2009-2010
+ * @copyright The Analysis and Solutions Company, 2009-2011
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
 
