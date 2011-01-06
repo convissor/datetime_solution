@@ -28,8 +28,10 @@
  */
 class DateTimeSolution_Diff extends DateTime {
 	const DAYS_PER_LYEAR = 366;
+	const DAYS_PER_LYEAR_PERIOD = 146097;
 	const DAYS_PER_YEAR = 365;
 	const SECS_PER_DAY = 86400;
+	const YEARS_PER_LYEAR_PERIOD = 400;
 
 	/**
 	 * Indicates which level of support the DateTime Solution is providing
@@ -354,7 +356,7 @@ class DateTimeSolution_Diff extends DateTime {
 	 * Populates the given time object's properties with values in the GMT
 	 * time zone corresponding to the given timestamp
 	 *
-	 * Ported from ext/date/lib/unixtime2tm.c 293036 2010-01-03 09:23:27Z
+	 * Ported from ext/date/lib/unixtime2tm.c 307103 2011-01-05 04:13:23Z
 	 *
 	 * @param timelib_time $tm
 	 * @param int $ts
@@ -375,6 +377,12 @@ class DateTimeSolution_Diff extends DateTime {
 
 		if ($ts >= 0) {
 			$tmp_days = $days + 1;
+
+			if ($tmp_days >= self::DAYS_PER_LYEAR_PERIOD || $tmp_days <= -self::DAYS_PER_LYEAR_PERIOD) {
+				$cur_year += self::YEARS_PER_LYEAR_PERIOD * ($tmp_days / self::DAYS_PER_LYEAR_PERIOD);
+				$tmp_days -= self::DAYS_PER_LYEAR_PERIOD * ($tmp_days / self::DAYS_PER_LYEAR_PERIOD);
+			}
+
 			while ($tmp_days >= self::DAYS_PER_LYEAR) {
 				$cur_year++;
 				if ($this->timelib_is_leap($cur_year)) {
