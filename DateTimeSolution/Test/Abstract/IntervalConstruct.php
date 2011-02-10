@@ -33,6 +33,11 @@ abstract class DateTimeSolution_Test_Abstract_IntervalConstruct extends PHPUnit_
 		$this->expect['d'] = 23;
 		$this->assertEquals($this->expect, get_object_vars($interval));
 	}
+	public function test_w() {
+		$interval = new DateIntervalSolution('P23W');
+		$this->expect['d'] = 161;
+		$this->assertEquals($this->expect, get_object_vars($interval));
+	}
 	public function test_h() {
 		$interval = new DateIntervalSolution('PT23H');
 		$this->expect['h'] = 23;

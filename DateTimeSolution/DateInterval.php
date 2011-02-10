@@ -75,12 +75,20 @@ class DateTimeSolution_DateInterval {
 	 */
 	public function __construct($interval_spec) {
 		$this->interval_spec = $interval_spec;
-		if (!preg_match('/^P((\d+)Y)?((\d+)M)?((\d+)D)?(T((\d+)H)?((\d+)M)?((\d+)S)?)?$/', $interval_spec, $match)) {
+		if (!preg_match('/^P((\d+)Y)?((\d+)M)?((\d+)(D|W))?(T((\d+)H)?((\d+)M)?((\d+)S)?)?$/', $interval_spec, $match)) {
 			throw new Exception("Invalid interval_spec $interval_spec");
 		}
 		$this->y = empty($match[2]) ? 0 : (int) $match[2];
 		$this->m = empty($match[4]) ? 0 : (int) $match[4];
-		$this->d = empty($match[6]) ? 0 : (int) $match[6];
+		if (empty($match[6])) {
+			$this->d = 0;
+		} else {
+			if ($match[7] == 'W') {
+				$this->d = $match[6] * 7;
+			} else {
+				$this->d = (int) $match[6];
+			}
+		}
 		$this->h = empty($match[9]) ? 0 : (int) $match[9];
 		$this->i = empty($match[11]) ? 0 : (int) $match[11];
 		$this->s = empty($match[13]) ? 0 : (int) $match[13];
