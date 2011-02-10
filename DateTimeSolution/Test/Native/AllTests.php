@@ -17,6 +17,8 @@ class DateTimeSolution_Test_Native_AllTests {
 		$suite->addTestSuite('DateTimeSolution_Test_Native_AddTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Native_BogusTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Native_DiffTest');
+		$suite->addTestSuite('DateTimeSolution_Test_Native_IntervalConstructTest');
+		$suite->addTestSuite('DateTimeSolution_Test_Native_IntervalFormatTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Native_ModifyTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Native_SubTest');
 

@@ -18,6 +18,8 @@ class DateTimeSolution_Test_Userland_AllTests {
 		$suite->addTestSuite('DateTimeSolution_Test_Userland_AddTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Userland_BogusTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Userland_DiffTest');
+		$suite->addTestSuite('DateTimeSolution_Test_Userland_IntervalConstructTest');
+		$suite->addTestSuite('DateTimeSolution_Test_Userland_IntervalFormatTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Userland_ModifyTest');
 		$suite->addTestSuite('DateTimeSolution_Test_Userland_SubTest');
 
