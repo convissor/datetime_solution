@@ -91,8 +91,9 @@ class DateTimeSolution_DateInterval {
 	/**
 	 * Formats the interval
 	 *
-	 * @param string $format  supports any combination of
-	 *                        "%y", "%m", "%d", "%a", "%h", "%i", "%s", "%R", "%r"
+	 * @param string $format  supports any combination of "%y", "%Y", "%m",
+	 *                        "%M", "%d", "%D", "%a", "%h", "%H", "%i", "%I",
+	 *                        "%s", "%S", "%r", "%R"
 	 * @return string
 	 */
 	public function format($format) {
@@ -106,7 +107,10 @@ class DateTimeSolution_DateInterval {
 
 		$search = array('%y', '%m', '%d', '%a', '%h', '%i', '%s', '%R', '%r');
 		$replace = array($this->y, $this->m, $this->d, $this->days, $this->h, $this->i, $this->s, $this->R, $this->r);
-		return str_replace($search, $replace, $format);
+		$format = str_replace($search, $replace, $format);
+
+		return preg_replace_callback('/%[YMDHIS]/',
+				array($this, 'replace_upper_case_formats'), $format);
 	}
 
 	/**
@@ -118,5 +122,15 @@ class DateTimeSolution_DateInterval {
 	 */
 	public function get_datetime_solution_level() {
 		return 'userland';
+	}
+
+	/**
+	 * Handles upper case formats for format()
+	 * @param array $matches  the data from preg_replace_callback()
+	 * @return string  the formatted number
+	 */
+	private function replace_upper_case_formats($matches) {
+		$property = substr(strtolower($matches[0]), -1);
+		return sprintf('%02d', $this->{$property});
 	}
 }
