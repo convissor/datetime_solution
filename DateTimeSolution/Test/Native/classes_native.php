@@ -14,10 +14,18 @@
  * @ignore
  * @package DateTimeSolution_Test
  */
-class DateTimeSolution extends DateTime {}
+class DateTimeSolution extends DateTime {
+	public function get_datetime_solution_level() {
+		return 'native';
+	}
+}
 
 /**
  * @ignore
  * @package DateTimeSolution_Test
  */
-class DateIntervalSolution extends DateInterval {}
+class DateIntervalSolution extends DateInterval {
+	public function get_datetime_solution_level() {
+		return 'native';
+	}
+}

@@ -25,6 +25,5 @@ class DateTimeSolution_Test_Userland_IntervalConstructTest extends DateTimeSolut
 		's' => 0,
 		'invert' => 0,
 		'days' => false,
-		'datetime_solution_level' => '52',
 	);
 }

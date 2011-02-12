@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DateTime Solution's DateInterval class for use if PHP < 5.3
+ * DateTime Solution's DateInterval class for use if PHP < 5.4
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
@@ -10,7 +10,7 @@
  */
 
 /**
- * Provides DateInterval functionality for versions of PHP before 5.3
+ * Provides DateInterval functionality for versions of PHP before 5.4
  *
  * @package DateTimeSolution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
@@ -18,12 +18,6 @@
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
 class DateTimeSolution_DateInterval {
-	/**
-	 * Indicates which level of support the DateTime Solution is providing
-	 * @var string
-	 */
-	public $datetime_solution_level = '52';
-
 	/**
 	 * The total number of days
 	 *
@@ -113,5 +107,16 @@ class DateTimeSolution_DateInterval {
 		$search = array('%y', '%m', '%d', '%a', '%h', '%i', '%s', '%R', '%r');
 		$replace = array($this->y, $this->m, $this->d, $this->days, $this->h, $this->i, $this->s, $this->R, $this->r);
 		return str_replace($search, $replace, $format);
+	}
+
+	/**
+	 * Indicates which level of support the DateTime Solution is providing
+	 *
+	 * Can't use a property because of PHP bug 52738
+	 *
+	 * @return string
+	 */
+	public function get_datetime_solution_level() {
+		return 'userland';
 	}
 }

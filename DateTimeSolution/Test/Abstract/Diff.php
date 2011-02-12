@@ -75,11 +75,12 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		}
 		$result_end_date = $start->format('Y-m-d');
 
-		// Not checking days for now due to bug 53634.
 		$expect_full = "FWD: $end_date - $start_date = **$expect_spec** | "
-			. "BACK: $start_date $sign $expect_spec = **$end_date**";
+			. "BACK: $start_date $sign $expect_spec = **$end_date** | "
+			. "DAYS: **$expect_days**";
 		$result_full = "FWD: $end_date - $start_date = **$result_spec** | "
-			. "BACK: $start_date $sign $result_spec = **$result_end_date**";
+			. "BACK: $start_date $sign $result_spec = **$result_end_date** | "
+			. "DAYS: **$result_interval->days**";
 
 		$this->assertEquals($expect_full, $result_full);
 	}
@@ -376,6 +377,35 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 	}
 	public function test_absolute_negative_7() {
 		$this->examine_diff('2009-01-07', '2009-01-14', 'P+0Y0M7DT0H0M0S', 7, true);
+	}
+	/**#@-*/
+
+	/**#@+
+	 * Straight up days calculations
+	 */
+	public function test_with_time() {
+		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
+		$date2 = new DateTimeSolution('2001-03-04 04:05:06');
+		$interval = $date1->diff($date2);
+		$this->assertEquals(428, $interval->format('%a'));
+	}
+	public function test_with_time_inverted() {
+		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
+		$date2 = new DateTimeSolution('2001-03-04 04:05:06');
+		$interval = $date2->diff($date1);
+		$this->assertEquals(428, $interval->format('%a'));
+	}
+	public function test_without_time() {
+		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
+		$date2 = new DateTimeSolution('2001-03-04 00:00:00');
+		$interval = $date1->diff($date2);
+		$this->assertEquals(428, $interval->format('%a'));
+	}
+	public function test_without_time_inverted() {
+		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
+		$date2 = new DateTimeSolution('2001-03-04 00:00:00');
+		$interval = $date2->diff($date1);
+		$this->assertEquals(428, $interval->format('%a'));
 	}
 	/**#@-*/
 }

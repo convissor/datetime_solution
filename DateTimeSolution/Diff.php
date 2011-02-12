@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DateTime Solution's DateTime class for use if PHP < 5.3.5
+ * DateTime Solution's DateTime class for the diff() method
  *
  * NOTE: only supports years, months and days (for now).
  *
@@ -15,7 +15,7 @@
 
 /**
  * Provides a DateTime::diff() substitute to work around bugs in versions of
- * PHP before 5.3.5
+ * PHP before 5.4
  *
  * NOTE: only supports years, months and days (for now).
  *
@@ -33,14 +33,19 @@ class DateTimeSolution_Diff extends DateTime {
 	const SECS_PER_DAY = 86400;
 	const YEARS_PER_LYEAR_PERIOD = 400;
 
-	/**
-	 * Indicates which level of support the DateTime Solution is providing
-	 * @var string
-	 */
-	public $datetime_solution_level = 'diff';
-
 	protected $transitions;
 
+
+	/**
+	 * Indicates which level of support the DateTime Solution is providing
+	 *
+	 * Can't use a property because of PHP bug 52738
+	 *
+	 * @return string
+	 */
+	public function get_datetime_solution_level() {
+		return 'diff';
+	}
 
 	/**
 	 * Calculates the difference between two DateTime objects
@@ -143,10 +148,9 @@ class DateTimeSolution_Diff extends DateTime {
 			$interval->invert = 1;
 		}
 
-		/*
-		 * Damn!  Writing to $days throws fatal error.  Bug 53634.
-		$interval->days = abs(floor(($one->sse - $two->sse - ($dst_h_corr * 3600) - ($dst_m_corr * 60)) / 86400));
-		 */
+		$interval->days = round((
+			abs($one->sse - $two->sse - ($dst_h_corr * 3600) - ($dst_m_corr * 60))
+		) / 86400);
 
 		return $interval;
 	}
