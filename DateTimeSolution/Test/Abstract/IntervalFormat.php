@@ -91,6 +91,77 @@ abstract class DateTimeSolution_Test_Abstract_IntervalFormat extends PHPUnit_Fra
 	/**#@-*/
 
 	/**#@+
+	 * format() for unset elements
+	 */
+	public function test_unset_y() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals(0, $interval->format('%y'));
+	}
+	public function test_unset_y_upper() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('00', $interval->format('%Y'));
+	}
+	public function test_unset_m() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals(0, $interval->format('%m'));
+	}
+	public function test_unset_m_upper() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('00', $interval->format('%M'));
+	}
+	public function test_unset_d() {
+		$interval = new DateIntervalSolution('P1Y');
+		$this->assertEquals(0, $interval->format('%d'));
+	}
+	public function test_unset_d_upper() {
+		$interval = new DateIntervalSolution('P1Y');
+		$this->assertEquals('00', $interval->format('%D'));
+	}
+	public function test_unset_h() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals(0, $interval->format('%h'));
+	}
+	public function test_unset_h_upper() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('00', $interval->format('%H'));
+	}
+	public function test_unset_i() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals(0, $interval->format('%i'));
+	}
+	public function test_unset_i_upper() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('00', $interval->format('%I'));
+	}
+	public function test_unset_s() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals(0, $interval->format('%s'));
+	}
+	public function test_unset_s_upper() {
+		$this->markTestSkipped();
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('00', $interval->format('%S'));
+	}
+	public function test_unset_r() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('', $interval->format('%r'));
+	}
+	public function test_unset_r_upper() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('+', $interval->format('%R'));
+	}
+	public function test_unset_a() {
+		$interval = new DateIntervalSolution('P1D');
+		$this->assertEquals('(unknown)', $interval->format('%a'));
+	}
+	/**#@-*/
+
+	/**#@+
 	 * Compound formats
 	 */
 	public function test_compound_1() {

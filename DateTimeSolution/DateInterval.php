@@ -105,8 +105,10 @@ class DateTimeSolution_DateInterval {
 			$this->r = '';
 		}
 
+		$days = $this->days === false ? '(unknown)' : $this->days;
+
 		$search = array('%y', '%m', '%d', '%a', '%h', '%i', '%s', '%R', '%r');
-		$replace = array($this->y, $this->m, $this->d, $this->days, $this->h, $this->i, $this->s, $this->R, $this->r);
+		$replace = array($this->y, $this->m, $this->d, $days, $this->h, $this->i, $this->s, $this->R, $this->r);
 		$format = str_replace($search, $replace, $format);
 
 		return preg_replace_callback('/%[YMDHIS]/',
