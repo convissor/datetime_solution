@@ -15,5 +15,5 @@ require_once dirname(__FILE__) . '/classes_native.php';
  * @copyright The Analysis and Solutions Company, 2009-2011
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
-class DateTimeSolution_Test_Native_FormatConstructTest extends DateTimeSolution_Test_Abstract_IntervalFormat {
+class DateTimeSolution_Test_Native_IntervalFormatTest extends DateTimeSolution_Test_Abstract_IntervalFormat {
 }
