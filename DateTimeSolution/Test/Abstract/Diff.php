@@ -383,25 +383,25 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 	/**#@+
 	 * Straight up days calculations
 	 */
-	public function test_with_time() {
+	public function test_days_with_time() {
 		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
 		$date2 = new DateTimeSolution('2001-03-04 04:05:06');
 		$interval = $date1->diff($date2);
 		$this->assertEquals(428, $interval->format('%a'));
 	}
-	public function test_with_time_inverted() {
+	public function test_days_with_time_inverted() {
 		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
 		$date2 = new DateTimeSolution('2001-03-04 04:05:06');
 		$interval = $date2->diff($date1);
 		$this->assertEquals(428, $interval->format('%a'));
 	}
-	public function test_without_time() {
+	public function test_days_without_time() {
 		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
 		$date2 = new DateTimeSolution('2001-03-04 00:00:00');
 		$interval = $date1->diff($date2);
 		$this->assertEquals(428, $interval->format('%a'));
 	}
-	public function test_without_time_inverted() {
+	public function test_days_without_time_inverted() {
 		$date1 = new DateTimeSolution('2000-01-01 00:00:00');
 		$date2 = new DateTimeSolution('2001-03-04 00:00:00');
 		$interval = $date2->diff($date1);
