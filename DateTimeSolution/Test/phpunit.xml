@@ -2,4 +2,7 @@
 <phpunit
 	bootstrap="./bootstrap.inc"
 	>
+	<!--
+	stopOnFailure="true"
+	-->
 </phpunit>
