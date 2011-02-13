@@ -10,6 +10,25 @@
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
 abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_TestCase {
+	/**#@+
+	 * The kinds of checks that can be done (bitwise integers)
+	 */
+	const CHECK_DIFF = 1;
+	const CHECK_DAYS = 2;
+	const CHECK_ADD = 4;
+	/**#@-*/
+
+	/**
+	 * The type of checks that should be done (bitwise integer)
+	 *
+	 * @var int
+	 * @see DateTimeSolution_Test_Abstract_Diff::CHECK_DIFF
+	 * @see DateTimeSolution_Test_Abstract_Diff::CHECK_DAYS
+	 * @see DateTimeSolution_Test_Abstract_Diff::CHECK_ADD
+	 */
+	public $check_level = 7;
+
+
 	/**
 	 * Automatically sets time zone to America/New_York before each test
 	 */
@@ -75,12 +94,57 @@ abstract class DateTimeSolution_Test_Abstract_Diff extends PHPUnit_Framework_Tes
 		}
 		$result_end_date = $start->format('Y-m-d');
 
-		$expect_full = "FWD: $end_date - $start_date = **$expect_spec** | "
-			. "BACK: $start_date $sign $expect_spec = **$end_date** | "
-			. "DAYS: **$expect_days**";
-		$result_full = "FWD: $end_date - $start_date = **$result_spec** | "
-			. "BACK: $start_date $sign $result_spec = **$result_end_date** | "
-			. "DAYS: **$result_interval->days**";
+		/*
+		 * Highlights for problems.
+		 */
+
+		if ($expect_spec == $result_spec) {
+			$spec_highlight = '  ';
+		} else {
+			$spec_highlight = '**';
+		}
+
+		if ($expect_days == $result_interval->days) {
+			$days_highlight = '  ';
+		} else {
+			$days_highlight = '**';
+		}
+
+		if ($end_date == $result_end_date) {
+			$date_highlight = '  ';
+		} else {
+			$date_highlight = '**';
+		}
+
+		/*
+		 * Compose and compare results.
+		 */
+
+		$expect_full = '';
+		if ($this->check_level & self::CHECK_DIFF) {
+			$expect_full .= "FWD: $end_date - $start_date = "
+				. "$spec_highlight$expect_spec$spec_highlight";
+		}
+		if ($this->check_level & self::CHECK_DAYS) {
+			$expect_full .= " | DAYS: $days_highlight$expect_days$days_highlight";
+		}
+		if ($this->check_level & self::CHECK_ADD) {
+			$expect_full .= " | BACK: $start_date $sign $expect_spec = "
+				. "$date_highlight$end_date$date_highlight";
+		}
+
+		$result_full = '';
+		if ($this->check_level & self::CHECK_DIFF) {
+			$result_full .= "FWD: $end_date - $start_date = "
+				. "$spec_highlight$result_spec$spec_highlight";
+		}
+		if ($this->check_level & self::CHECK_DAYS) {
+			$result_full .= " | DAYS: $days_highlight$result_interval->days$days_highlight";
+		}
+		if ($this->check_level & self::CHECK_ADD) {
+			$result_full .= " | BACK: $start_date $sign $result_spec = "
+				. "$date_highlight$result_end_date$date_highlight";
+		}
 
 		$this->assertEquals($expect_full, $result_full);
 	}
