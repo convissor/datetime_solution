@@ -148,7 +148,7 @@ class DateTimeSolution_Diff extends DateTime {
 			$interval->invert = 1;
 		}
 
-		$interval->days = round((
+		$interval->days = floor((
 			abs($one->sse - $two->sse - ($dst_h_corr * 3600) - ($dst_m_corr * 60))
 		) / 86400);
 
