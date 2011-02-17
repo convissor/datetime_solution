@@ -224,13 +224,13 @@ class DateTimeSolution_Diff extends DateTime {
 	 * @uses DateTimeSolution_Diff::do_range_limit_days_relative()  to do the rounding
 	 */
 	private function timelib_do_rel_normalize(&$base, &$rt) {
-		while ($this->do_range_limit(0, 60, 60, $rt->s, $rt->i));
-		while ($this->do_range_limit(0, 60, 60, $rt->i, $rt->h));
-		while ($this->do_range_limit(0, 24, 24, $rt->h, $rt->d));
-		while ($this->do_range_limit(0, 12, 12, $rt->m, $rt->y));
+		$this->do_range_limit(0, 60, 60, $rt->s, $rt->i);
+		$this->do_range_limit(0, 60, 60, $rt->i, $rt->h);
+		$this->do_range_limit(0, 24, 24, $rt->h, $rt->d);
+		$this->do_range_limit(0, 12, 12, $rt->m, $rt->y);
 
 		$this->do_range_limit_days_relative($base->y, $base->m, $rt->y, $rt->m, $rt->d, $rt->invert);
-		while ($this->do_range_limit(0, 12, 12, $rt->m, $rt->y));
+		$this->do_range_limit(0, 12, 12, $rt->m, $rt->y);
 	}
 
 	/**
