@@ -4,11 +4,17 @@
  * Declares the DateTimeSolution and DateIntervalSolution appropriate
  * for testing of PHP's native date/time methods
  *
+ * Also dies if running PHP < 5.3.
+ *
  * @package DateTimeSolution_Test
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2009-2011
  * @license http://www.analysisandsolutions.com/software/license.htm Simple Public License
  */
+
+if (version_compare(phpversion(), '5.3', '<')) {
+	die("Skip: native tests require PHP 5.3.\n");
+}
 
 /**
  * @ignore
