@@ -65,28 +65,52 @@ abstract class DateTimeSolution_Test_Abstract_IntervalConstruct extends PHPUnit_
 	 * Bad patterns
 	 */
 	public function test_bad_b() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('P6B');
+		try {
+			$interval = new DateIntervalSolution('P6B');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	public function test_bad_tb() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('PT2B');
+		try {
+			$interval = new DateIntervalSolution('PT2B');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	public function test_bad_s_no_t() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('P2S');
+		try {
+			$interval = new DateIntervalSolution('P2S');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	public function test_bad_d_no_p() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('2D');
+		try {
+			$interval = new DateIntervalSolution('2D');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	public function test_bad_h_no_p() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('T2H');
+		try {
+			$interval = new DateIntervalSolution('T2H');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	public function test_bad_order() {
-		$this->setExpectedException('Exception');
-		$interval = new DateIntervalSolution('P2D3YT2S');
+		try {
+			$interval = new DateIntervalSolution('P2D3YT2S');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 	/**#@=*/
 

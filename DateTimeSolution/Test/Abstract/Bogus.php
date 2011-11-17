@@ -13,7 +13,11 @@ abstract class DateTimeSolution_Test_Abstract_Bogus extends PHPUnit_Framework_Te
 	 * Invalid date
 	 */
 	public function test_bogus_date() {
-		$this->setExpectedException('Exception');
-		$date = new DateTimeSolution('2008-33-33');
+		try {
+			$date = new DateTimeSolution('2008-33-33');
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('Exception was not thrown.');
 	}
 }
